@@ -1,0 +1,17 @@
+﻿<Router AppAssembly="@typeof(Routes).Assembly" AdditionalAssemblies="new[]{ typeof(IceNet.Shared.Pages.Index).Assembly}">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layouts.MainLayout)">
+            <Authorizing>
+                Authorizing...
+            </Authorizing>
+            <NotAuthorized>
+                <RedirectToLogin />
+            </NotAuthorized>
+        </AuthorizeRouteView>
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Layouts.MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>

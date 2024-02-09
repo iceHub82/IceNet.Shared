@@ -1,0 +1,87 @@
+﻿@page "/Login"
+
+@attribute [AllowAnonymous]
+
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+@using System.ComponentModel.DataAnnotations;
+
+@inject NavigationManager Navigation;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@layout Layouts.LoginLayout
+
+<EditForm Model="@Model" OnValidSubmit="@Authenticate" FormName="LoginForm">
+    <DataAnnotationsValidator />
+    <div class="text-center">
+        <h3 class="h3 mb-3 fw-normal">Sign in to continue</h3>
+    </div>
+    <ValidationSummary />
+    <div class="alert alert-danger" hidden="@Model.LoginFailureHidden">
+        Invalid sign in attempt, please correct and try again.
+    </div>
+    <div class="form-floating mb-2">
+        <InputText @bind-Value="Model.Email" class="form-control" />
+        <label>Email</label>
+    </div>
+    <div class="form-floating mb-2">
+        <InputText @bind-Value="Model.Password" class="form-control" />
+        <label>Password</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 py-2">Sign in</button>
+
+</EditForm>
+
+@code {
+
+    [CascadingParameter]
+    public HttpContext? HttpContext { get; set; }
+
+    [SupplyParameterFromForm]
+    public LoginViewModel Model { get; set; } = new();
+
+    private async Task Authenticate()
+    {
+        if (!Model.Email.Equals("t@t.com"))
+        {
+            Model.LoginFailureHidden = false;
+            return;
+        }
+
+        var app = Environment.GetEnvironmentVariable("App");
+
+        if (app == "Server")
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, "test"),
+                new Claim(ClaimTypes.Name, "test")
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(principal);
+        }
+
+        if (app == "Maui")
+            await ((CustomAuthStateProvider)AuthenticationStateProvider).LogInAsync(Model.Email);
+
+        Navigation.NavigateTo("/");
+    }
+
+    public class LoginViewModel
+    {
+        [Required(ErrorMessage = "Email address is required")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string? Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        public bool LoginFailureHidden { get; set; } = true;
+    }
+}

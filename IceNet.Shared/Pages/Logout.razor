@@ -1,0 +1,25 @@
+﻿@page "/Logout"
+
+@inject NavigationManager Navigation;
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@code {
+    [CascadingParameter]
+    public HttpContext? Context { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var app = Environment.GetEnvironmentVariable("App");
+
+        if (app == "Server")
+            if (Context.User.Identity.IsAuthenticated)
+                await Context.SignOutAsync();
+
+        if (app == "Maui")
+            await ((CustomAuthStateProvider)AuthenticationStateProvider).Logout();
+
+        Navigation.NavigateTo("/Login", true);
+    }
+}

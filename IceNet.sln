@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IceNet.App.Web", "IceNet.App.Web\IceNet.App.Web.csproj", "{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{3C6E7727-449A-424C-8F75-D3558F674D1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{DF1A0BCA-B034-4ED9-8890-07C7B72D0D67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IceNet.Shared", "IceNet.Shared\IceNet.Shared.csproj", "{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IceNet.App.Maui", "IceNet.App.Maui\IceNet.App.Maui.csproj", "{6D86CF0F-C65E-4F61-9188-4038F949F85B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{92809D60-EC32-4508-8AA6-1A436EC7E9C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IceNet.Service.Preferences", "IceNet.Service.Preferences\IceNet.Service.Preferences.csproj", "{3603F722-7439-4175-A0C6-7AA15EE84D64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{3603F722-7439-4175-A0C6-7AA15EE84D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3603F722-7439-4175-A0C6-7AA15EE84D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3603F722-7439-4175-A0C6-7AA15EE84D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3603F722-7439-4175-A0C6-7AA15EE84D64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CDFA47B6-018B-4147-BB8C-F45EF2F94BD1} = {3C6E7727-449A-424C-8F75-D3558F674D1C}
+		{F95CC4CA-15CE-49B6-9F6C-45FEEE1EA8C5} = {DF1A0BCA-B034-4ED9-8890-07C7B72D0D67}
+		{6D86CF0F-C65E-4F61-9188-4038F949F85B} = {3C6E7727-449A-424C-8F75-D3558F674D1C}
+		{3603F722-7439-4175-A0C6-7AA15EE84D64} = {92809D60-EC32-4508-8AA6-1A436EC7E9C6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA96B3D0-90BD-40C2-8E16-0B808CBBB2A8}
+	EndGlobalSection
+EndGlobal
