@@ -1,0 +1,13 @@
+﻿@inject AuthenticationStateProvider GetAuthenticationStateAsync
+
+<span>@_userName</span>
+
+@code {
+    private string? _userName;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
+        _userName = authState.User.Identity.Name;
+    }
+}

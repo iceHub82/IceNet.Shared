@@ -53,8 +53,8 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
     {
         var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
         {
-            new Claim( ClaimTypes.Email, email),
-            //new Claim( ClaimTypes.Role, "userRole")
+            new Claim(ClaimTypes.Name, email),
+            new Claim(ClaimTypes.Email, email)
         }, "auth"));
 
         _preferenceStoreService.Set("User", email);
