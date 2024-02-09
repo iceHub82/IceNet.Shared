@@ -20,10 +20,9 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
             {
                 var userEmail = _preferenceStoreService.Get<string>("User");
 
-                var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
-                {
-                    new Claim(ClaimTypes.Email, userEmail),
-                    //new Claim( ClaimTypes.Role, "userRole")
+                var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim> {
+                    new Claim(ClaimTypes.Name, userEmail),
+                    new Claim( ClaimTypes.Email, userEmail)
                 }, "auth"));
 
                 return Task.FromResult(new AuthenticationState(authenticatedUser));
