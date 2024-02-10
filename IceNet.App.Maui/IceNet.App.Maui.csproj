@@ -74,8 +74,17 @@
       <ProjectReference Include="..\IceNet.Shared\IceNet.Shared.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
+	<ItemGroup>
       <None Include="wwwroot\index.html" />
     </ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="..\IceNet.Shared\appsettings.Development.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="..\IceNet.Shared\appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>

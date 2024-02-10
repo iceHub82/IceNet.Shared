@@ -1,6 +1,10 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile(
+    $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: false, reloadOnChange: true);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

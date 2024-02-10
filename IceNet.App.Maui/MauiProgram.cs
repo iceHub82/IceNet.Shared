@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Components.Authorization;
 using IceNet.Shared;
 using IceNet.Service.Preferences;
@@ -14,12 +16,24 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
             });
 
-        builder.Services.AddMauiBlazorWebView();
+        var project = Assembly.GetCallingAssembly().GetName().Name;
+        var appSettings = $"{project}.appsettings.json";
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
-		builder.Logging.AddDebug();
+        appSettings = $"{project}.appsettings.Development.json";
+
+        builder.Services.AddBlazorWebViewDeveloperTools();
+        builder.Logging.AddDebug();
+
+#elif RELEASE
+        appSettings = $"{project}.appsettings.Production.json";
 #endif
+        var assembly = Assembly.GetExecutingAssembly();
+        using var stream = assembly.GetManifestResourceStream(appSettings);
+        var config = new ConfigurationBuilder().AddJsonStream(stream).Build();
+        builder.Configuration.AddConfiguration(config);
+
+        builder.Services.AddMauiBlazorWebView();
 
         builder.Services.AddAuthorizationCore();
         builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
