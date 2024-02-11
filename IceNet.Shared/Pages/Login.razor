@@ -42,6 +42,9 @@
     [SupplyParameterFromForm]
     public LoginViewModel Model { get; set; } = new();
 
+    [SupplyParameterFromQuery]
+    public string? ReturnUrl { get; set; }
+
     private async Task Authenticate()
     {
         if (!Model.Email.Equals("test@test.com"))
@@ -64,12 +67,18 @@
             var principal = new ClaimsPrincipal(identity);
 
             await HttpContext.SignInAsync(principal);
+
+            var returnUrl = Util.IsLocalUrl(ReturnUrl) ? ReturnUrl : "/";
+
+            Navigation.NavigateTo(returnUrl);
         }
 
         if (app == "Maui")
+        {
             await ((CustomAuthStateProvider)AuthenticationStateProvider).LogInAsync(Model.Email);
 
-        Navigation.NavigateTo("/");
+            Navigation.NavigateTo("/");
+        }
     }
 
     public class LoginViewModel
