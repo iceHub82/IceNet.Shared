@@ -14,5 +14,8 @@
 
 <ul>
   <li>User authorization</li>
-  <li>Darkmode</li>
+  <li>Login</li>
+  <li>Logout</li>
+  <li>Show user email</li>
+  <li>Toggle Darkmode</li>
 </ul>
