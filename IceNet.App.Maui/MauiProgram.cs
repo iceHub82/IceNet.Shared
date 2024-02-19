@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Components.Authorization;
 using IceNet.Shared;
 using IceNet.Service.Preferences;
+using Blazored.LocalStorage;
 
 namespace IceNet.App.Maui;
 
@@ -38,6 +39,7 @@ public static class MauiProgram
         builder.Services.AddAuthorizationCore();
         builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
         builder.Services.AddSingleton<IPreferenceStoreService, PreferenceStoreService>();
+        builder.Services.AddBlazoredLocalStorage();
 
         Environment.SetEnvironmentVariable("App", "Maui");
 

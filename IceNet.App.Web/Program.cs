@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Blazored.LocalStorage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddBlazoredLocalStorage();
 
 var app = builder.Build();
 

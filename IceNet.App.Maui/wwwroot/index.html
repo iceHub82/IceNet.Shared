@@ -6,23 +6,31 @@
     <title>IceNet.App.Maui</title>
     <base href="/" />
     <link rel="stylesheet" href="/_content/IceNet.Shared/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/_content/IceNet.Shared/css/bootstrap/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/_content/IceNet.Shared/css/app.css" />
     <link rel="stylesheet" href="IceNet.App.Maui.styles.css" />
     <link rel="icon" type="image/png" href="/_content/IceNet.Shared/favicon.png" />
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = '/_content/IceNet.Shared/css/darkmode.css';
+        link.disabled = localStorage.getItem('darkmode') === null ? true : false;
+        document.head.appendChild(link);
+    </script>
 </head>
-    <body>
+<body>
 
-        <div class="status-bar-safe-area"></div>
+    <div class="status-bar-safe-area"></div>
 
-        <div id="app"></div>
+    <div id="app"></div>
 
-        <div id="blazor-error-ui">
-            An unhandled error has occurred.
-            <a href="" class="reload">Reload</a>
-            <a class="dismiss">🗙</a>
-        </div>
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
 
-        <script src="_framework/blazor.webview.js" autostart="false"></script>
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
 
-    </body>
+</body>
 </html>

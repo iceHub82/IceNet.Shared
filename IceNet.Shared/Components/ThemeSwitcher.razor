@@ -1,0 +1,51 @@
+﻿@using Microsoft.JSInterop
+
+@rendermode _renderMode
+
+@inject IJSRuntime js
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+
+@implements IAsyncDisposable
+
+<Button class="btn shadow-none" onclick="@ToggleIcon">
+    <img id="themeBtnImg" src="@(_darkmode ? "/_content/IceNet.Shared/img/moon.svg" : "/_content/IceNet.Shared/img/sun.svg")" />
+</Button>
+@code {
+    private bool _darkmode;
+    private IJSObjectReference? _module;
+    private static IComponentRenderMode? _renderMode = Util.GetRenderMode();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _darkmode = await localStorage.ContainKeyAsync("darkmode");
+
+            StateHasChanged();
+        }
+    }
+
+    async Task ToggleIcon()
+    {
+        _module = await js.InvokeAsync<IJSObjectReference>("import", "./_content/IceNet.Shared/Components/DarkMode.razor.js");
+
+        if (await localStorage.ContainKeyAsync("darkmode"))
+        {
+            _darkmode = false;
+            await localStorage.RemoveItemAsync("darkmode");
+            await _module.InvokeVoidAsync("toggleDarkmode", false);
+        }
+        else
+        {
+            _darkmode = true;
+            await localStorage.SetItemAsStringAsync("darkmode", "");
+            await _module.InvokeVoidAsync("toggleDarkmode", true);
+        }
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (_module is not null)
+            await _module.DisposeAsync();
+    }
+}

@@ -1,0 +1,24 @@
+﻿@rendermode _renderMode
+
+<link rel="stylesheet" href="/_content/IceNet.Shared/css/darkmode.css" disabled="@(_disableDarkMode)" />
+
+@code {
+    private bool _disableDarkMode;
+    private static IComponentRenderMode? _renderMode = Util.GetRenderMode();
+
+    [Inject]
+    public required Blazored.LocalStorage.ILocalStorageService LocalStorage { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (await LocalStorage.ContainKeyAsync("darkmode"))
+                _disableDarkMode = false;
+            else
+                _disableDarkMode = true;
+
+            StateHasChanged();
+        }
+    }
+}

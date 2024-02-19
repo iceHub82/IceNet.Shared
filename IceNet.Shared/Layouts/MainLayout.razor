@@ -1,5 +1,13 @@
 ﻿@inherits LayoutComponentBase
 
+<HeadContent>
+    <link rel="icon" type="image/png" href="/_content/IceNet.Shared/favicon.png" />
+    <link rel="stylesheet" href="/_content/IceNet.Shared/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="/_content/IceNet.Shared/css/app.css" />
+    <link rel="stylesheet" href="IceNet.App.Web.styles.css" />
+    <DarkMode />
+</HeadContent>
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
@@ -7,6 +15,7 @@
 
     <main>
         <div class="top-row px-4">
+            <ThemeSwitcher />
             <User />
         </div>
 
